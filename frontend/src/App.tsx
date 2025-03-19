@@ -7,11 +7,8 @@ function App() {
     <>
       <BookList />
       <CookieConsent />
-<<<<<<< HEAD
-=======
       {/* This website uses cookies to enhance the user experience.
       </CookieConsent> */}
->>>>>>> 96aed7cbb91fd9adb3f63729982857d4157b8222
     </>
   );
 }
