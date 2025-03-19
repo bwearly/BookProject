@@ -68,3 +68,7 @@ C:\Users\early\OneDrive\Desktop\Mission11_Early\backend\Mission_Early.API\bin\De
 C:\Users\early\OneDrive\Desktop\Mission11_Early\backend\Mission_Early.API\bin\Debug\net8.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\early\OneDrive\Desktop\Mission11_Early\backend\Mission_Early.API\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\early\OneDrive\Desktop\Mission11_Early\backend\Mission_Early.API\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
+<<<<<<< HEAD
+C:\Users\early\OneDrive\Desktop\Mission11_Early\backend\Mission_Early.API\obj\Debug\net8.0\Mission11_Early.API.sourcelink.json
+=======
+>>>>>>> 96aed7cbb91fd9adb3f63729982857d4157b8222

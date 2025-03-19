@@ -15,7 +15,7 @@ namespace Mission11_Early.API.Controllers
         }
 
         [HttpGet("AllBooks")]
-        public IEnumerable<Book> GetBooks()
+        public IActionResult GetBooks(int resultLength = 5, int pageNumber = 1)
         {
             string? favBookType = Request.Cookies["FavoriteBookType"];
             Console.WriteLine("===COOKIE===\n" + favBookType);
@@ -28,8 +28,17 @@ namespace Mission11_Early.API.Controllers
                 Expires = DateTime.Now.AddMinutes(1)
             });
 
-            return _context.Books.ToList();
-        }
+            var pagination = _context.Books.Skip((pageNumber-1)*resultLength).Take(resultLength).ToList();
 
+            var totalBooks = _context.Books.Count();
+
+            var bookObject = new
+            {
+                Books = pagination,
+                TotalBooks = totalBooks,
+            };
+
+            return Ok(bookObject);
+        }
     }
 }
