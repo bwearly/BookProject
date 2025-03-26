@@ -71,7 +71,11 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
         </div>
       ))}
 
-      <button disabled={pageNum === 1} onClick={() => setPageNum(pageNum - 1)}>
+      <button
+        disabled={pageNum === 1}
+        onClick={() => setPageNum(pageNum - 1)}
+        className="btn btn-secondary mt-1"
+      >
         Previous
       </button>
       {[...Array(totalPages)].map((_, index) => (
@@ -79,6 +83,7 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
           key={index + 1}
           onClick={() => setPageNum(index + 1)}
           disabled={pageNum === index + 1}
+          className="btn btn-secondary mt-1"
         >
           {index + 1}
         </button>
@@ -86,6 +91,7 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
       <button
         disabled={pageNum === totalPages}
         onClick={() => setPageNum(pageNum + 1)}
+        className="btn btn-secondary mt-1"
       >
         Next
       </button>
@@ -98,6 +104,7 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
             setPageSize(Number(p.target.value));
             setPageNum(1);
           }}
+          className="form-control"
         >
           <option value="5">5</option>
           <option value="10">10</option>

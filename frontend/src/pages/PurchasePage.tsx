@@ -2,10 +2,12 @@ import WelcomeHeader from '../components/WelcomeHeader';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { CartItem } from '../types/CartItem';
+import { useState } from 'react';
 
 function PurchasePage() {
   const navigate = useNavigate();
   const { title, bookID, price } = useParams();
+  const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
 
   const handleAddToCart = () => {
@@ -25,10 +27,29 @@ function PurchasePage() {
       <h2>Purchase {title}</h2>
 
       <div>
-        <input type="number" value='${price}' disabled />
-        <button onClick={handleAddToCart}>Add to Cart</button>
+        <div className="input-group">
+          <span className="input-group-text">$</span>
+          <input
+            type="number"
+            value={price}
+            disabled
+            className="form-control"
+          />
+        </div>
+        <input
+          type="number"
+          min="1"
+          value={quantity}
+          onChange={(q) => setQuantity(Number(q.target.value))}
+          className="form-control mt-1"
+        />
+        <button onClick={handleAddToCart} className="btn btn-success mt-2 mb-2">
+          Add to Cart
+        </button>
       </div>
-      <button onClick={() => navigate(-1)}>Go Back</button>
+      <button onClick={() => navigate(-1)} className="btn btn-secondary mt-1">
+        Go Back
+      </button>
     </>
   );
 }
