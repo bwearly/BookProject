@@ -1,0 +1,24 @@
+.categoryFilter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: Arial, sans-serif;
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.categoryItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.categoryCheck {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
