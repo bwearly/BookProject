@@ -15,8 +15,15 @@ namespace Mission11_Early.API.Controllers
         }
 
         [HttpGet("AllBooks")]
-        public IActionResult GetBooks(int resultLength = 5, int pageNumber = 1)
+        public IActionResult GetBooks(int resultLength = 5, int pageNumber = 1, [FromQuery] List<string>? bookTypes = null)
         {
+            var query = _context.Books.AsQueryable();
+
+            if (bookTypes != null && bookTypes.Any())
+            {
+                query = query.Where(b => bookTypes.Contains(b.Category));
+            }
+
             string? favBookType = Request.Cookies["FavoriteBookType"];
             Console.WriteLine("===COOKIE===\n" + favBookType);
 
@@ -28,9 +35,9 @@ namespace Mission11_Early.API.Controllers
                 Expires = DateTime.Now.AddMinutes(1)
             });
 
-            var pagination = _context.Books.Skip((pageNumber-1)*resultLength).Take(resultLength).ToList();
+            var totalBooks = query.Count();
 
-            var totalBooks = _context.Books.Count();
+            var pagination = query.Skip((pageNumber-1)*resultLength).Take(resultLength).ToList();
 
             var bookObject = new
             {
@@ -39,6 +46,14 @@ namespace Mission11_Early.API.Controllers
             };
 
             return Ok(bookObject);
+        }
+
+        [HttpGet("GetBookTypes")]
+        public IActionResult GetBookTypes()
+        {
+            var bookTypes = _context.Books.Select(b => b.Category).Distinct().ToList();
+
+            return Ok(bookTypes);
         }
     }
 }

@@ -1,18 +1,23 @@
 import { useEffect, useState } from 'react';
-import { Book } from './types/Book';
+import { Book } from '../types/Book';
+import { useNavigate } from 'react-router-dom';
 
-function BookList() {
+function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   const [books, setBooks] = useState<Book[]>([]);
   const [pageSize, setPageSize] = useState<number>(5);
   const [pageNum, setPageNum] = useState<number>(1);
   const [totalItems, setTotalItems] = useState<number>(0);
   const [totalPages, setTotalPages] = useState<number>(0);
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBooks = async () => {
+      const categoryParams = selectedCategories
+        .map((cat) => `bookTypes=${encodeURIComponent(cat)}`)
+        .join('&');
+
       const response = await fetch(
-        `https://localhost:5000/Book/AllBooks?resultLength=${pageSize}&pageNumber=${pageNum}`,
+        `https://localhost:5000/Book/AllBooks?resultLength=${pageSize}&pageNumber=${pageNum}${selectedCategories.length ? `&${categoryParams}` : ''}`,
         {
           credentials: 'include',
         }
@@ -23,26 +28,10 @@ function BookList() {
       setTotalPages(Math.ceil(totalItems / pageSize));
     };
     fetchBooks();
-  }, [pageSize, pageNum, totalItems]);
-
-  const sortBooksByTitle = () => {
-    const sortedBooks = [...books].sort((a, b) => {
-      if (a.title < b.title) return sortOrder === 'asc' ? -1 : 1;
-      if (a.title > b.title) return sortOrder === 'asc' ? 1 : -1;
-      return 0;
-    });
-
-    setBooks(sortedBooks);
-    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-  };
+  }, [pageSize, pageNum, totalItems, selectedCategories]);
 
   return (
     <>
-      <h1>Book List</h1>
-      <br />
-      <button onClick={sortBooksByTitle}>
-        Sort by Title ({sortOrder === 'asc' ? 'Ascending' : 'Descending'})
-      </button>
       {books.map((b) => (
         <div id="bookCard" className="card" key={b.bookID}>
           <h3 className="card-title">{b.title}</h3>
@@ -70,11 +59,23 @@ function BookList() {
                 <strong>ISBN:</strong> {b.isbn}
               </li>
             </ul>
+            <button
+              className="btn btn-success"
+              onClick={() =>
+                navigate(`/purchase/${b.title}/${b.bookID}/${b.price}`)
+              }
+            >
+              Buy
+            </button>
           </div>
         </div>
       ))}
 
-      <button disabled={pageNum === 1} onClick={() => setPageNum(pageNum - 1)}>
+      <button
+        disabled={pageNum === 1}
+        onClick={() => setPageNum(pageNum - 1)}
+        className="btn btn-secondary mt-1"
+      >
         Previous
       </button>
       {[...Array(totalPages)].map((_, index) => (
@@ -82,6 +83,7 @@ function BookList() {
           key={index + 1}
           onClick={() => setPageNum(index + 1)}
           disabled={pageNum === index + 1}
+          className="btn btn-secondary mt-1"
         >
           {index + 1}
         </button>
@@ -89,6 +91,7 @@ function BookList() {
       <button
         disabled={pageNum === totalPages}
         onClick={() => setPageNum(pageNum + 1)}
+        className="btn btn-secondary mt-1"
       >
         Next
       </button>
@@ -101,6 +104,7 @@ function BookList() {
             setPageSize(Number(p.target.value));
             setPageNum(1);
           }}
+          className="form-control"
         >
           <option value="5">5</option>
           <option value="10">10</option>

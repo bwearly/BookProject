@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\early\\OneDrive\\Desktop\\Mission11_Early\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{249BFD58-FC5D-068F-B126-193C26F5DD9C}|backend\\Mission_Early.API\\Mission11_Early.API.csproj|c:\\users\\early\\onedrive\\desktop\\mission11_early\\backend\\mission_early.api\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{249BFD58-FC5D-068F-B126-193C26F5DD9C}|backend\\Mission_Early.API\\Mission11_Early.API.csproj|solutionrelative:backend\\mission_early.api\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{249BFD58-FC5D-068F-B126-193C26F5DD9C}|backend\\Mission_Early.API\\Mission11_Early.API.csproj|c:\\users\\early\\onedrive\\desktop\\mission11_early\\backend\\mission_early.api\\data\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{249BFD58-FC5D-068F-B126-193C26F5DD9C}|backend\\Mission_Early.API\\Mission11_Early.API.csproj|solutionrelative:backend\\mission_early.api\\data\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Book.cs",
+              "DocumentMoniker": "C:\\Users\\early\\OneDrive\\Desktop\\Mission11_Early\\backend\\Mission_Early.API\\Data\\Book.cs",
+              "RelativeDocumentMoniker": "backend\\Mission_Early.API\\Data\\Book.cs",
+              "ToolTip": "C:\\Users\\early\\OneDrive\\Desktop\\Mission11_Early\\backend\\Mission_Early.API\\Data\\Book.cs",
+              "RelativeToolTip": "backend\\Mission_Early.API\\Data\\Book.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T00:49:54.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BookController.cs",
+              "DocumentMoniker": "C:\\Users\\early\\OneDrive\\Desktop\\Mission11_Early\\backend\\Mission_Early.API\\Controllers\\BookController.cs",
+              "RelativeDocumentMoniker": "backend\\Mission_Early.API\\Controllers\\BookController.cs",
+              "ToolTip": "C:\\Users\\early\\OneDrive\\Desktop\\Mission11_Early\\backend\\Mission_Early.API\\Controllers\\BookController.cs",
+              "RelativeToolTip": "backend\\Mission_Early.API\\Controllers\\BookController.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwCcAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T21:03:59.43Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
