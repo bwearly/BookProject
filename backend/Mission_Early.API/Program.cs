@@ -25,11 +25,19 @@ builder.Services.AddDbContext<BookStoreContext>(options =>
 // });
 
 builder.Services.AddCors(options =>
-    options.AddPolicy("AddReactApp", policy => {
-        policy.WithOrigins("http://localhost:3000", "https://book-early-backend-b6dxa5hbcxcvhfbu.eastus-01.azurewebsites.net")
+{
+    options.AddPolicy("AddReactApp", policy =>
+    {
+        policy.WithOrigins(
+            "http://localhost:3000",
+            "https://agreeable-coast-023d2341e.6.azurestaticapps.net"
+        )
+        .AllowAnyHeader()
         .AllowAnyMethod()
-        .AllowAnyHeader();
-    }));
+        .AllowCredentials();
+    });
+});
+
 
 var app = builder.Build();
 
