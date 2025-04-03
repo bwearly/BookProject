@@ -108,7 +108,7 @@ const AdminBookPage = () => {
               <td>{b.classification}</td>
               <td>{b.category}</td>
               <td>{b.pageCount}</td>
-              <td>{b.price}</td>
+              <td>${b.price}</td>
               <td>{b.isbn}</td>
               <td>
                 <button
