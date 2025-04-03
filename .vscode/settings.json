@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "undefined/subscriptions/11eaccc3-6a78-48d7-8594-672b6278ef60/resourceGroups/appsvc_windows_eastus/providers/Microsoft.Web/sites/Book-Early-Backend",
+  "appService.deploySubpath": "backend\\Mission_Early.API\\publish"
+}
