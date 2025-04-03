@@ -24,16 +24,16 @@ namespace Mission11_Early.API.Controllers
                 query = query.Where(b => bookTypes.Contains(b.Category));
             }
 
-            string? favBookType = Request.Cookies["FavoriteBookType"];
-            Console.WriteLine("===COOKIE===\n" + favBookType);
+            // string? favBookType = Request.Cookies["FavoriteBookType"];
+            // Console.WriteLine("===COOKIE===\n" + favBookType);
 
-            HttpContext.Response.Cookies.Append("favoriteBookType", "Historical", new CookieOptions
-            {
-                HttpOnly = true,
-                Secure = false,
-                SameSite = SameSiteMode.None,
-                Expires = DateTime.Now.AddMinutes(1)
-            });
+            // HttpContext.Response.Cookies.Append("favoriteBookType", "Historical", new CookieOptions
+            // {
+            //     HttpOnly = true,
+            //     Secure = false,
+            //     SameSite = SameSiteMode.None,
+            //     Expires = DateTime.Now.AddMinutes(1)
+            // });
 
             var totalBooks = query.Count();
 
@@ -54,6 +54,49 @@ namespace Mission11_Early.API.Controllers
             var bookTypes = _context.Books.Select(b => b.Category).Distinct().ToList();
 
             return Ok(bookTypes);
+        }
+
+        [HttpPost("AddBook")]
+        public IActionResult AddBook([FromBody] Book newBook) 
+        {
+            _context.Books.Add(newBook);
+            _context.SaveChanges();
+            return Ok(newBook);
+        }
+
+        [HttpPut("UpdateBook/{bookID}")]
+        public IActionResult UpdateBook(int bookID, [FromBody] Book updatedBook)
+        {
+            var existingBook = _context.Books.Find(bookID);
+
+            existingBook.Title = updatedBook.Title;
+            existingBook.Author = updatedBook.Author;
+            existingBook.Publisher = updatedBook.Publisher;
+            existingBook.Classification = updatedBook.Classification;
+            existingBook.Category = updatedBook.Category;
+            existingBook.PageCount = updatedBook.PageCount;
+            existingBook.Price = updatedBook.Price;
+            existingBook.ISBN = updatedBook.ISBN;
+
+            _context.Books.Update(existingBook);
+            _context.SaveChanges();
+
+            return Ok(existingBook);
+        }
+
+        [HttpDelete("DeleteBook/{bookID}")]
+        public IActionResult DeleteBook(int bookID)
+        {
+            var book = _context.Books.Find(bookID);
+
+            if (book == null) {
+                return NotFound(new {message = "Book not found"});
+            }
+
+            _context.Books.Remove(book);
+            _context.SaveChanges();
+
+            return NoContent();
         }
     }
 }
